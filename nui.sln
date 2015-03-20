@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nui", "nui.vcxproj", "{1EEFD916-2FCB-48F0-A559-4F0E61DDE830}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "skia", "skia.vcxproj", "{EC5BD0C9-C2A7-4EAA-A6F8-E74FF9E79B9F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nui-test", "nui-test.vcxproj", "{8829843B-26B9-4D88-A331-DD0D452CD017}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EEFD916-2FCB-48F0-A559-4F0E61DDE830}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1EEFD916-2FCB-48F0-A559-4F0E61DDE830}.Debug|Win32.Build.0 = Debug|Win32
+		{1EEFD916-2FCB-48F0-A559-4F0E61DDE830}.Release|Win32.ActiveCfg = Release|Win32
+		{1EEFD916-2FCB-48F0-A559-4F0E61DDE830}.Release|Win32.Build.0 = Release|Win32
+		{EC5BD0C9-C2A7-4EAA-A6F8-E74FF9E79B9F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EC5BD0C9-C2A7-4EAA-A6F8-E74FF9E79B9F}.Debug|Win32.Build.0 = Debug|Win32
+		{EC5BD0C9-C2A7-4EAA-A6F8-E74FF9E79B9F}.Release|Win32.ActiveCfg = Release|Win32
+		{EC5BD0C9-C2A7-4EAA-A6F8-E74FF9E79B9F}.Release|Win32.Build.0 = Release|Win32
+		{8829843B-26B9-4D88-A331-DD0D452CD017}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8829843B-26B9-4D88-A331-DD0D452CD017}.Debug|Win32.Build.0 = Debug|Win32
+		{8829843B-26B9-4D88-A331-DD0D452CD017}.Release|Win32.ActiveCfg = Release|Win32
+		{8829843B-26B9-4D88-A331-DD0D452CD017}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

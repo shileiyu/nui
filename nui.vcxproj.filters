@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="nui\nui.h" />
+    <ClInclude Include="nui\base\bitwise_enum.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\color.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\size.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\rect.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\point.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\sys\keyboard.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\sys\utils.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\sys\window.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\sys\window_events.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\sys\window_types.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\sys\workspace.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\sys\cursor.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\sys\icon.h">
+      <Filter>sys</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\ref.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\painter.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\pixmap.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\pixpainter.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\base\mouse.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\layout\sizer.h">
+      <Filter>layout</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\layout\mono.h">
+      <Filter>layout</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\layout\mover.h">
+      <Filter>layout</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\layout\multi.h">
+      <Filter>layout</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\event_dispatch.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\events.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\focus_manager.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\gadget.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\types.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\layout\layout.h">
+      <Filter>layout</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\world.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\node.h" />
+    <ClInclude Include="nui\gadget\text_area.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\picture.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\label.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\scroll_view.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\scroll_bar.h">
+      <Filter>gadget</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="base">
+      <UniqueIdentifier>{b4f0dfcf-d4ed-4d3f-b87d-d0bc9ca2bc1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gadget">
+      <UniqueIdentifier>{de0fd312-14b4-4882-90b3-9f0ae93a3ecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sys">
+      <UniqueIdentifier>{5803390f-83e7-4653-a466-f81142615081}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="layout">
+      <UniqueIdentifier>{e638a682-524c-43b3-b2d9-d207943d1dda}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="nui\base\color.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\base\size.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\base\rect.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\base\point.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\sys\utils.cpp">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\sys\window.cpp">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\sys\window_events.cpp">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\sys\workspace.cpp">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\sys\cursor.cpp">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\sys\icon.cpp">
+      <Filter>sys</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\base\pixmap.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\base\pixpainter.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\layout\sizer.cpp">
+      <Filter>layout</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\layout\mono.cpp">
+      <Filter>layout</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\layout\mover.cpp">
+      <Filter>layout</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\layout\multi.cpp">
+      <Filter>layout</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\event_dispatch.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\events.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\focus_manager.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\world.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\text_area.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\gadget.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\picture.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\label.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\scroll_view.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\scroll_bar.cpp">
+      <Filter>gadget</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

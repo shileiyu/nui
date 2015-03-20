@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nui\base\mouse.h" />
+    <ClInclude Include="nui\base\pixmap.h" />
+    <ClInclude Include="nui\base\bitwise_enum.h" />
+    <ClInclude Include="nui\base\pixpainter.h" />
+    <ClInclude Include="nui\base\color.h" />
+    <ClInclude Include="nui\base\painter.h" />
+    <ClInclude Include="nui\base\point.h" />
+    <ClInclude Include="nui\base\rect.h" />
+    <ClInclude Include="nui\base\ref.h" />
+    <ClInclude Include="nui\base\size.h" />
+    <ClInclude Include="nui\gadget\events.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\event_dispatch.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\focus_manager.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\gadget.h" />
+    <ClInclude Include="nui\gadget\label.h" />
+    <ClInclude Include="nui\gadget\node.h" />
+    <ClInclude Include="nui\gadget\picture.h" />
+    <ClInclude Include="nui\gadget\scroll_bar.h" />
+    <ClInclude Include="nui\gadget\text_area.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\world.h" />
+    <ClInclude Include="nui\gadget\scroll_view.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\gadget\types.h" />
+    <ClInclude Include="nui\layout\layout.h" />
+    <ClInclude Include="nui\layout\multi.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\layout\mono.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\layout\mover.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\layout\sizer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nui\nui.h" />
+    <ClInclude Include="nui\sys\cursor.h" />
+    <ClInclude Include="nui\sys\icon.h" />
+    <ClInclude Include="nui\sys\keyboard.h" />
+    <ClInclude Include="nui\sys\utils.h" />
+    <ClInclude Include="nui\sys\window.h" />
+    <ClInclude Include="nui\sys\window_events.h" />
+    <ClInclude Include="nui\sys\window_types.h" />
+    <ClInclude Include="nui\sys\workspace.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="nui\base\pixmap.cpp" />
+    <ClCompile Include="nui\base\pixpainter.cpp" />
+    <ClCompile Include="nui\base\color.cpp" />
+    <ClCompile Include="nui\base\point.cpp" />
+    <ClCompile Include="nui\base\rect.cpp" />
+    <ClCompile Include="nui\base\size.cpp" />
+    <ClCompile Include="nui\gadget\events.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\event_dispatch.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\focus_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\gadget.cpp" />
+    <ClCompile Include="nui\gadget\label.cpp" />
+    <ClCompile Include="nui\gadget\picture.cpp" />
+    <ClCompile Include="nui\gadget\scroll_bar.cpp" />
+    <ClCompile Include="nui\gadget\text_area.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\gadget\world.cpp" />
+    <ClCompile Include="nui\gadget\scroll_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\layout\multi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\layout\mono.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\layout\mover.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\layout\sizer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nui\sys\cursor.cpp" />
+    <ClCompile Include="nui\sys\icon.cpp" />
+    <ClCompile Include="nui\sys\utils.cpp" />
+    <ClCompile Include="nui\sys\window.cpp" />
+    <ClCompile Include="nui\sys\window_events.cpp" />
+    <ClCompile Include="nui\sys\workspace.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="skia.vcxproj">
+      <Project>{ec5bd0c9-c2a7-4eaa-a6f8-e74ff9e79b9f}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1EEFD916-2FCB-48F0-A559-4F0E61DDE830}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>nui</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>out\$(Configuration)\</OutDir>
+    <IntDir>build\nui\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>out\$(Configuration)\</OutDir>
+    <IntDir>build\nui\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\skia\include\core;.\skia\include\config;.\skia\include\images;.\skia\include\effects;.\skia\include\utils;.\skia\include\ports;.\skia\include\utils\win;.\nui\gtest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\skia\include\core;.\skia\include\config;.\skia\include\images;.\skia\include\effects;.\skia\include\utils;.\skia\include\ports;.\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

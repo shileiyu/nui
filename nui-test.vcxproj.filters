@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="nui-test\nui_unittest_client.cpp" />
+    <ClCompile Include="nui-test\gtest_main.cpp" />
+    <ClCompile Include="nui\gadget\focus_manager_unittest.cpp" />
+    <ClCompile Include="nui\gtest\src\gtest-all.cc" />
+    <ClCompile Include="nui-test\nui_unittest.cpp" />
+    <ClCompile Include="nui-test\label_button.cpp">
+      <Filter>control</Filter>
+    </ClCompile>
+    <ClCompile Include="nui-test\list_view.cpp">
+      <Filter>control</Filter>
+    </ClCompile>
+    <ClCompile Include="nui-test\progress_bar.cpp">
+      <Filter>control</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nui-test\nui_unittest_client.h" />
+    <ClInclude Include="nui-test\label_button.h">
+      <Filter>control</Filter>
+    </ClInclude>
+    <ClInclude Include="nui-test\list_view.h">
+      <Filter>control</Filter>
+    </ClInclude>
+    <ClInclude Include="nui-test\progress_bar.h">
+      <Filter>control</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="control">
+      <UniqueIdentifier>{be35dc5c-173c-472c-9d63-2253bf43fec4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
