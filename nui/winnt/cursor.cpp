@@ -1,8 +1,12 @@
-#include <nui/sys/utils.h>
-#include <nui/sys/cursor.h>
+#include <nui/winnt/utils.h>
+#include <nui/winnt/cursor.h>
 
 namespace nui
 {
+
+namespace winnt
+{
+
 
 static LPCTSTR StyleToResource(CursorStyles style)
 {
@@ -71,4 +75,5 @@ void Cursor::Dispose()
     }
 }
 
+}
 }

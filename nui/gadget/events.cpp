@@ -4,9 +4,9 @@
 namespace nui
 {
 
-GadgetEvent::GadgetEvent()
+Event::Event()
 {
-    type_ = GadgetEventType::kUndefined;
+    type_ = EventType::kUndefined;
     phase_ = kCapturing;
     feature_.bubbles = true;
     feature_.cancelable = true;
@@ -14,328 +14,336 @@ GadgetEvent::GadgetEvent()
     status_.propagating = true;
 }
 
-void GadgetEvent::PreventDefault()
+void Event::PreventDefault()
 {
     if (feature_.cancelable)
         status_.canceled = true;
 }
 
-void GadgetEvent::StopPropagation()
+void Event::StopPropagation()
 {
     status_.propagating = false;
 }
 
-ScopedGadget GadgetEvent::target()
+ScopedGadget Event::target()
 {
     return target_;
 }
 
-bool GadgetEvent::Canceled() const
+bool Event::Canceled() const
 {
     return status_.canceled;
 }
 
-bool GadgetEvent::Propagation() const
+bool Event::Propagation() const
 {
     return status_.propagating;
 }
 
-GadgetEventType GadgetEvent::type() const
+EventType Event::type() const
 {
     return type_;
 }
 
-GadgetEventPhase GadgetEvent::phase() const
+EventPhase Event::phase() const
 {
     return phase_;
 }
 
-GadgetMouseEvent GadgetMouseEvent::MouseMove(
+class MouseEventHelper 
+{
+public:
+    template <typename Event>
+    static void SetPosition(Event & e, const Point & pt)
+    {
+        auto gpt = e.target_->MapToGlobal(pt);
+
+        e.x_ = pt.x();
+        e.y_ = pt.y();
+        e.global_x_ = gpt.x();
+        e.global_y_ = gpt.y();
+    }
+};
+
+
+
+MouseEvent MouseEvent::MouseMove(
     ScopedGadget target,
     MouseState state,
     const Point & pt
 ) {
-    GadgetMouseEvent e;
-    e.type_ = GadgetEventType::kMouseMove;
+    MouseEvent e;
+    e.type_ = EventType::kMouseMove;
     e.target_ = target;
     e.button_ = MouseButton::kNone;
     e.state_ = state;
-    e.x_ = pt.x();
-    e.y_ = pt.y();
+    MouseEventHelper::SetPosition(e, pt);
     return e;
 }
 
-GadgetMouseEvent GadgetMouseEvent::MouseDown(
+MouseEvent MouseEvent::MouseDown(
     ScopedGadget target,
     MouseButton button,
     MouseState state,
     const Point & pt
 ){
-    GadgetMouseEvent e;
-    e.type_ = GadgetEventType::kMouseDown;
+    MouseEvent e;
+    e.type_ = EventType::kMouseDown;
     e.target_ = target;
     e.button_ = button;
     e.state_ = state;
-    e.x_ = pt.x();
-    e.y_ = pt.y();
+    MouseEventHelper::SetPosition(e, pt);
     return e;
 }
 
-GadgetMouseEvent GadgetMouseEvent::MouseUp(
+MouseEvent MouseEvent::MouseUp(
     ScopedGadget target,
     MouseButton button,
     MouseState state,
     const Point & pt
 ) {
-    GadgetMouseEvent e;
-    e.type_ = GadgetEventType::kMouseUp;
+    MouseEvent e;
+    e.type_ = EventType::kMouseUp;
     e.target_ = target;
     e.button_ = button;
     e.state_ = state;
-    e.x_ = pt.x();
-    e.y_ = pt.y();
+    MouseEventHelper::SetPosition(e, pt);
     return e;
 }
 
-GadgetMouseEvent GadgetMouseEvent::MouseClick(
+MouseEvent MouseEvent::MouseClick(
     ScopedGadget target,
     MouseButton button,
     MouseState state,
     const Point & pt
 ) {
-    GadgetMouseEvent e;
-    e.type_ = GadgetEventType::kMouseClick;
+    MouseEvent e;
+    e.type_ = EventType::kMouseClick;
     e.target_ = target;
     e.button_ = button;
     e.state_ = state;
-    e.x_ = pt.x();
-    e.y_ = pt.y();
+    MouseEventHelper::SetPosition(e, pt);
     return e;
 }
 
-GadgetMouseEvent GadgetMouseEvent::MouseDoubleClick(
+MouseEvent MouseEvent::MouseDoubleClick(
     ScopedGadget target,
     MouseButton button,
     MouseState state,
     const Point & pt
 ){
-    GadgetMouseEvent e;
-    e.type_ = GadgetEventType::kMouseDoubleClick;
+    MouseEvent e;
+    e.type_ = EventType::kMouseDoubleClick;
     e.target_ = target;
     e.button_ = button;
     e.state_ = state;
-    e.x_ = pt.x();
-    e.y_ = pt.y();
+    MouseEventHelper::SetPosition(e, pt);
     return e;
 }
     
-GadgetMouseEvent GadgetMouseEvent::MouseOver(
+MouseEvent MouseEvent::MouseOver(
     ScopedGadget target
 ) {
-    GadgetMouseEvent e;
-    e.type_ = GadgetEventType::kMouseOver;
+    MouseEvent e;
+    e.type_ = EventType::kMouseOver;
     e.target_ = target;
     e.button_ = MouseButton::kNone;
     e.state_ = MouseState::kPressedNone;
-    e.x_ = 0;
-    e.y_ = 0;
     return e;
 }
 
-GadgetMouseEvent GadgetMouseEvent::MouseOut(
+MouseEvent MouseEvent::MouseOut(
     ScopedGadget target
 ) {
-    GadgetMouseEvent e;
-    e.type_ = GadgetEventType::kMouseOut;
+    MouseEvent e;
+    e.type_ = EventType::kMouseOut;
     e.target_ = target;
     e.button_ = MouseButton::kNone;
     e.state_ = MouseState::kPressedNone;
-    e.x_ = 0;
-    e.y_ = 0;
     return e;
 }
 
-GadgetMouseEvent * GadgetMouseEvent::FromEvent(GadgetEvent & e)
+MouseEvent * MouseEvent::FromEvent(Event & e)
 {
     switch(e.type()){
-    case GadgetEventType::kMouseMove:
-    case GadgetEventType::kMouseDown:
-    case GadgetEventType::kMouseUp:
-    case GadgetEventType::kMouseClick:
-    case GadgetEventType::kMouseDoubleClick:
-    case GadgetEventType::kMouseOver:
-    case GadgetEventType::kMouseOut:
-        return &static_cast<GadgetMouseEvent&>(e);
+    case EventType::kMouseMove:
+    case EventType::kMouseDown:
+    case EventType::kMouseUp:
+    case EventType::kMouseClick:
+    case EventType::kMouseDoubleClick:
+    case EventType::kMouseOver:
+    case EventType::kMouseOut:
+        return &static_cast<MouseEvent&>(e);
     }
     return nullptr;
 }
 
-GadgetMouseEvent::GadgetMouseEvent()
+MouseEvent::MouseEvent()
     : button_(MouseButton::kPrimary), state_(MouseState::kPressedNone), 
-      x_(0), y_(0)
+    x_(0), y_(0), global_x_(0), global_y_(0)
 {
 }
 
-int32_t GadgetMouseEvent::x() const
+int32_t MouseEvent::x() const
 {
     return x_;
 }
 
-int32_t GadgetMouseEvent::y() const
+int32_t MouseEvent::y() const
 {
     return y_;
 }
 
 
-MouseButton GadgetMouseEvent::button() const
+MouseButton MouseEvent::button() const
 {
     return button_;
 }
 
-MouseState GadgetMouseEvent::state() const
+MouseState MouseEvent::state() const
 {
     return state_;
 }
 
-GadgetKeyEvent GadgetKeyEvent::KeyUp(ScopedGadget target, KeyCode key)
+KeyEvent KeyEvent::KeyUp(ScopedGadget target, KeyCode key)
 {
-    GadgetKeyEvent e;
-    e.type_ = GadgetEventType::kKeyUp;
+    KeyEvent e;
+    e.type_ = EventType::kKeyUp;
     e.target_ = target;
     e.key_ = key;
     return e;
 }
 
-GadgetKeyEvent GadgetKeyEvent::KeyDown(ScopedGadget target, KeyCode key)
+KeyEvent KeyEvent::KeyDown(ScopedGadget target, KeyCode key)
 {
-    GadgetKeyEvent e;
-    e.type_ = GadgetEventType::kKeyDown;
+    KeyEvent e;
+    e.type_ = EventType::kKeyDown;
     e.target_ = target;
     e.key_ = key;
     return e;
 }
 
-GadgetKeyEvent * GadgetKeyEvent::FromEvent(GadgetEvent & e)
+KeyEvent * KeyEvent::FromEvent(Event & e)
 {
     switch (e.type())
     {
-    case GadgetEventType::kKeyDown:
-    case GadgetEventType::kKeyUp:
-        return &static_cast<GadgetKeyEvent &>(e);
+    case EventType::kKeyDown:
+    case EventType::kKeyUp:
+        return &static_cast<KeyEvent &>(e);
     }
     return nullptr;
 }
 
-KeyCode GadgetKeyEvent::key_code() const
+KeyCode KeyEvent::key_code() const
 {
     return key_;
 }
 
-bool GadgetKeyEvent::IsShiftDown() const
+bool KeyEvent::IsShiftDown() const
 {
     return !!(key_ & KeyCode::kShift);
 }
 
-bool GadgetKeyEvent::IsControlDown() const
+bool KeyEvent::IsControlDown() const
 {
     return !!(key_ & KeyCode::kControl);
 }
 
-bool GadgetKeyEvent::IsAltDown() const
+bool KeyEvent::IsAltDown() const
 {
     return !!(key_ & KeyCode::kAlt);
 }
 
-GadgetFocusEvent GadgetFocusEvent::FocusOut(ScopedGadget target, bool tab)
+FocusEvent FocusEvent::FocusOut(ScopedGadget target, bool tab)
 {
-    GadgetFocusEvent e;
-    e.type_ = GadgetEventType::kFocusOut;
+    FocusEvent e;
+    e.type_ = EventType::kFocusOut;
     e.target_ = target;
     e.tab_traversal_ = tab;
     return e;
 }
 
-GadgetFocusEvent GadgetFocusEvent::FocusIn(ScopedGadget target, bool tab)
+FocusEvent FocusEvent::FocusIn(ScopedGadget target, bool tab)
 {
-    GadgetFocusEvent e;
-    e.type_ = GadgetEventType::kFocusIn;
+    FocusEvent e;
+    e.type_ = EventType::kFocusIn;
     e.target_ = target;
     e.tab_traversal_ = tab;
     return e;
 }
 
-GadgetFocusEvent GadgetFocusEvent::Blur(ScopedGadget target, bool tab)
+FocusEvent FocusEvent::Blur(ScopedGadget target, bool tab)
 {
-    GadgetFocusEvent e;
-    e.type_ = GadgetEventType::kBlur;
+    FocusEvent e;
+    e.type_ = EventType::kBlur;
     e.target_ = target;
     e.tab_traversal_ = tab;
     return e;
 }
 
-GadgetFocusEvent GadgetFocusEvent::Focus(ScopedGadget target, bool tab)
+FocusEvent FocusEvent::Focus(ScopedGadget target, bool tab)
 {
-    GadgetFocusEvent e;
-    e.type_ = GadgetEventType::kFocus;
+    FocusEvent e;
+    e.type_ = EventType::kFocus;
     e.target_ = target;
     e.tab_traversal_ = tab;
     return e;
 }
 
-bool GadgetFocusEvent::IsTabTraversal() const
+bool FocusEvent::IsTabTraversal() const
 {
     return tab_traversal_;
 }
 
-GadgetFocusEvent * GadgetFocusEvent::FromEvent(GadgetEvent & e)
+FocusEvent * FocusEvent::FromEvent(Event & e)
 {
     switch (e.type()){
-    case GadgetEventType::kFocusOut:
-    case GadgetEventType::kFocusIn:
-    case GadgetEventType::kBlur:
-    case GadgetEventType::kFocus:
-        return &static_cast<GadgetFocusEvent &>(e);
+    case EventType::kFocusOut:
+    case EventType::kFocusIn:
+    case EventType::kBlur:
+    case EventType::kFocus:
+        return &static_cast<FocusEvent &>(e);
     }
     return nullptr;
 }
 
-GadgetFocusEvent::GadgetFocusEvent()
+FocusEvent::FocusEvent()
 :tab_traversal_(false)
 {
     ;
 }
 
-GadgetWheelEvent GadgetWheelEvent::Make(ScopedGadget target, int dx, int dy)
+WheelEvent WheelEvent::Make(ScopedGadget target, int dx, int dy)
 {
-    GadgetWheelEvent e;
+    WheelEvent e;
     e.target_ = target;
     e.dx_ = dx;
     e.dy_ = dy;
     return e;
 }
 
-GadgetWheelEvent::GadgetWheelEvent()
+WheelEvent::WheelEvent()
     : dx_(0), dy_(0)
 {
-    type_ = GadgetEventType::kWheel;
+    type_ = EventType::kWheel;
 }
 
-GadgetWheelEvent * GadgetWheelEvent::FromEvent(GadgetEvent & e)
+WheelEvent * WheelEvent::FromEvent(Event & e)
 {
     switch (e.type())
     {
-    case GadgetEventType::kWheel:
-        return &static_cast<GadgetWheelEvent &>(e);
+    case EventType::kWheel:
+        return &static_cast<WheelEvent &>(e);
     }
     return nullptr;
 }
 
-int32_t GadgetWheelEvent::dy() const
+int32_t WheelEvent::dy() const
 {
     return dy_;
 }
 
-int32_t GadgetWheelEvent::dx() const
+int32_t WheelEvent::dx() const
 {
     return dx_;
 }

@@ -24,7 +24,7 @@ static void GenerateGadgetEventPath(
     }
 }
 
-void EventDispatch::Run(EventDispatch & dispatch, GadgetEvent & e)
+void EventDispatch::Run(EventDispatch & dispatch, Event & e)
 {
     auto target = e.target();
     if (!target)
@@ -65,51 +65,35 @@ void EventDispatch::Run(EventDispatch & dispatch, GadgetEvent & e)
     return;
 }
 
-bool EventDispatch::Pass(ScopedGadget target, GadgetEvent & e)
+bool EventDispatch::Pass(ScopedGadget target, Event & e)
 {
     if (target)
         target->Dispatch(e);
     return e.status_.propagating;
 }
 
-void KeyEventDispatch::Run(GadgetKeyEvent & e)
+void KeyEventDispatch::Run(KeyEvent & e)
 {
     KeyEventDispatch dispatch;
     EventDispatch::Run(dispatch, e);
 }
 
-void FocusEventDispatch::Run(GadgetFocusEvent & e)
+void FocusEventDispatch::Run(FocusEvent & e)
 {
     FocusEventDispatch dispatch;
     EventDispatch::Run(dispatch, e);
 }
 
-void WheelEventDispatch::Run(GadgetWheelEvent & e)
+void WheelEventDispatch::Run(WheelEvent & e)
 {
     WheelEventDispatch dispatch;
     EventDispatch::Run(dispatch, e);
 }
 
-void MouseEventDispatch::Run(GadgetMouseEvent & e)
+void MouseEventDispatch::Run(MouseEvent & e)
 {
     MouseEventDispatch dispatch;
     EventDispatch::Run(dispatch, e);
-}
-
-bool MouseEventDispatch::Pass(ScopedGadget target, GadgetEvent & e)
-{
-    GadgetMouseEvent & globle = static_cast<GadgetMouseEvent&>(e);
-    GadgetMouseEvent locale = globle;
-
-    if (target )
-    {
-        Rect rect;
-        target->GetGlobleBounds(rect);
-        locale.x_ = globle.x_ - rect.left();
-        locale.y_ = globle.y_ - rect.top();
-        target->Dispatch(locale);
-    }
-    return locale.status_.propagating;
 }
 
 }

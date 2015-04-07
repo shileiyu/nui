@@ -1,12 +1,15 @@
-#ifndef NUI_WIN_WINDOW_EVENTS_H_
-#define NUI_WIN_WINDOW_EVENTS_H_
+#ifndef NUI_WINNT_WINDOW_EVENTS_H_
+#define NUI_WINNT_WINDOW_EVENTS_H_
 
 #include <nui/nui.h>
 #include <nui/base/point.h>
 #include <nui/base/size.h>
-#include <nui/sys/window_types.h>
+#include <nui/winnt/types.h>
 
 namespace nui
+{
+
+namespace winnt
 {
 
 struct WindowEvent
@@ -53,6 +56,8 @@ struct WindowHitTestEvent : WindowEvent
     void SetResult(WindowPart part);
 };
 
+
+}
 }
 
 

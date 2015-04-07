@@ -9,7 +9,7 @@ namespace nui
 
 bool FocusManager::arrow_key_traversal_enabled_ = false;
 
-FocusManager::FocusManager(GadgetWorld & root)
+FocusManager::FocusManager(World & root)
 :focus_change_reason_(kReasonFocusTraversal), root_(&root)
 {
     ;
@@ -20,10 +20,10 @@ FocusManager::~FocusManager()
     ;
 }
 
-bool FocusManager::HandleKeyEvent(GadgetKeyEvent & key)
+bool FocusManager::HandleKeyEvent(KeyEvent & key)
 {
     auto key_code = key.key_code();
-    if (key.type() == GadgetEventType::kKeyDown)
+    if (key.type() == EventType::kKeyDown)
     {//按键按下
         if (focused_gadget_ && focused_gadget_->SkipDefaultKeyEventProcessing(key))
             return false;
@@ -48,12 +48,12 @@ bool FocusManager::HandleKeyEvent(GadgetKeyEvent & key)
     return false;
 }
 
-bool FocusManager::IsTabTraversalKeyEvent(GadgetKeyEvent & key)
+bool FocusManager::IsTabTraversalKeyEvent(KeyEvent & key)
 {
     return key.key_code() == KeyCode::kTab && !key.IsControlDown();
 }
 
-bool FocusManager::ProcessArrowKeyTraversal(GadgetKeyEvent & key)
+bool FocusManager::ProcessArrowKeyTraversal(KeyEvent & key)
 {
     if (key.IsShiftDown() || key.IsControlDown() || key.IsAltDown())
         return false;
@@ -74,7 +74,7 @@ bool FocusManager::ProcessArrowKeyTraversal(GadgetKeyEvent & key)
     return false;
 }
 
-bool FocusManager::IsArrowKeyEvent(GadgetKeyEvent & key)
+bool FocusManager::IsArrowKeyEvent(KeyEvent & key)
 {
     auto key_code = key.key_code();
     return key_code == KeyCode::kLeft || key_code == KeyCode::kUp ||
@@ -187,20 +187,20 @@ void FocusManager::SetFocusedGadgetWithReason(ScopedGadget gadget, FocusChangeRe
     auto old_focused = focused_gadget_;
 
     if (old_focused)
-        dispatch.Run(GadgetFocusEvent::FocusOut(old_focused, tab));
+        dispatch.Run(FocusEvent::FocusOut(old_focused, tab));
 
     if (gadget)
-        dispatch.Run(GadgetFocusEvent::FocusIn(gadget, tab));
+        dispatch.Run(FocusEvent::FocusIn(gadget, tab));
 
     focus_change_reason_ = reason;
     focused_gadget_ = gadget;
     //SetStoredFocusGadget(focused_gadget_);
 
     if (old_focused)
-        dispatch.Run(GadgetFocusEvent::Blur(old_focused, tab));
+        dispatch.Run(FocusEvent::Blur(old_focused, tab));
 
     if (gadget)
-        dispatch.Run(GadgetFocusEvent::Focus(gadget, tab));
+        dispatch.Run(FocusEvent::Focus(gadget, tab));
 }
 
 void FocusManager::RestoreFocusedGadget()

@@ -9,7 +9,7 @@ namespace nui
 {
 
 
-class DummyWorldClient : public GadgetWorldClient
+class DummyWorldClient : public WorldClient
 {
 public:
     void PenddingRedraw(ScopedWorld world, const Rect & rect) {};
@@ -19,20 +19,19 @@ public:
     void PenddingLayout(ScopedWorld world){};
 };
 
-GadgetWorld::GadgetWorld(GadgetWorldClient * client)
+World::World(WorldClient * client)
 :focus_manager_(*this), client_(client), cursor_(CursorStyles::kArrow)
 {
     ;
 }
 
-GadgetWorld::~GadgetWorld()
+World::~World()
 {
     ;
 }
 
-void GadgetWorld::SetMousePos(const Point & pt)
+void World::SetMousePos(const Point & pt)
 {
-    typedef GadgetMouseEvent Event;
     MouseEventDispatch dispatch;
     mouse_pos_ = pt;
 
@@ -45,14 +44,14 @@ void GadgetWorld::SetMousePos(const Point & pt)
     if (target)
     {
         dispatch.Run(
-            Event::MouseMove(target, mouse_state_, mouse_pos_));
+            MouseEvent::MouseMove(target, mouse_state_, mouse_pos_));
     }
     Client().SetCursor(this, cursor_);
 }
 
-void GadgetWorld::MouseButtonDown(MouseButton mouse_button)
+void World::MouseButtonDown(MouseButton mouse_button)
 {
-    typedef GadgetMouseEvent Event;
+    typedef MouseEvent Event;
     MouseEventDispatch dispatch;
 
     auto target = GetTargetByMouse();
@@ -76,12 +75,11 @@ void GadgetWorld::MouseButtonDown(MouseButton mouse_button)
     }
 }
 
-void GadgetWorld::MouseButtonUp(MouseButton mouse_button)
+void World::MouseButtonUp(MouseButton mouse_button)
 {
-    typedef GadgetMouseEvent Event;
     auto target = GetTargetByMouse();
     MouseEventDispatch dispatch;
-    auto e = Event::MouseUp(target, mouse_button, mouse_state_, mouse_pos_);
+    auto e = MouseEvent::MouseUp(target, mouse_button, mouse_state_, mouse_pos_);
     if (target)
     {
         dispatch.Run(e);
@@ -100,24 +98,24 @@ void GadgetWorld::MouseButtonUp(MouseButton mouse_button)
     }
 }
 
-void GadgetWorld::Wheel(int dx, int dy)
+void World::Wheel(int dx, int dy)
 {
     WheelEventDispatch dispatch;
 
     auto target = GetTargetByMouse();
-    auto e = GadgetWheelEvent::Make(target, dx, dy);
+    auto e = WheelEvent::Make(target, dx, dy);
     if (target)
     {
         dispatch.Run(e);
     }
 }
 
-void GadgetWorld::SetMouseState(MouseState state)
+void World::SetMouseState(MouseState state)
 {
     mouse_state_ = state;
 }
 
-void GadgetWorld::SetFocus(bool focus)
+void World::SetFocus(bool focus)
 {
     if (focus)
     {
@@ -137,12 +135,12 @@ void GadgetWorld::SetFocus(bool focus)
     }
 }
 
-bool GadgetWorld::IsDrawn() const
+bool World::IsDrawn() const
 {
     return visible();
 }
 
-void GadgetWorld::Draw(Painter & painter, const Rect & inval_rect)
+void World::Draw(Painter & painter, const Rect & inval_rect)
 {
     if (inval_rect.isEmpty())
         return;
@@ -158,38 +156,38 @@ void GadgetWorld::Draw(Painter & painter, const Rect & inval_rect)
     painter.Restore();
 }
 
-ScopedGadget GadgetWorld::HitTest(const Point & pt)
+ScopedGadget World::HitTest(const Point & pt)
 {
     Point root_pt = pt - GetLoc();
     return Gadget::HitTest(root_pt);
 }
 
-FocusManager * GadgetWorld::GetFocusManager()
+FocusManager * World::GetFocusManager()
 {
     return &focus_manager_;
 }
 
-const FocusManager * GadgetWorld::GetFocusManager() const
+const FocusManager * World::GetFocusManager() const
 {
     return &focus_manager_;
 }
 
-void GadgetWorld::Invalidate(const Rect & inval)
+void World::Invalidate(const Rect & inval)
 {
     Client().PenddingRedraw(this, inval);
 }
 
-ScopedWorld GadgetWorld::GetRoot()
+ScopedWorld World::GetRoot()
 {
     return this;
 }
 
-const ScopedWorld GadgetWorld::GetRoot() const
+const ScopedWorld World::GetRoot() const
 {
-    return const_cast<GadgetWorld *>(this);
+    return const_cast<World *>(this);
 }
 
-void GadgetWorld::OnDraw(Painter & painter)
+void World::OnDraw(Painter & painter)
 {
     Rect bounds;
     GetLocalBounds(bounds);
@@ -200,7 +198,7 @@ void GadgetWorld::OnDraw(Painter & painter)
     painter.DrawRect(bounds, paint);
 }
 
-void GadgetWorld::OnHierarchyChanged(const HierarchyChangedDetails & details)
+void World::OnHierarchyChanged(const HierarchyChangedDetails & details)
 {
     if (!details.is_add)
     {//移除通知
@@ -213,7 +211,7 @@ void GadgetWorld::OnHierarchyChanged(const HierarchyChangedDetails & details)
 
 }
 
-void GadgetWorld::OnVisibilityChanged(ScopedGadget starting_from, bool is_visible)
+void World::OnVisibilityChanged(ScopedGadget starting_from, bool is_visible)
 {
     if (!is_visible)
     {
@@ -222,26 +220,24 @@ void GadgetWorld::OnVisibilityChanged(ScopedGadget starting_from, bool is_visibl
     }
 }
 
-void GadgetWorld::ShiftOver(ScopedGadget gadget)
+void World::ShiftOver(ScopedGadget gadget)
 {
-    typedef GadgetMouseEvent Event;
-
     MouseEventDispatch dispatch;
     if (over_ != gadget)
     {
         if (over_)
         {//离开旧控件
-            dispatch.Run(Event::MouseOut(over_));
+            dispatch.Run(MouseEvent::MouseOut(over_));
         }
         over_ = gadget;
         if (over_)
         {//进入新控件
-            dispatch.Run(Event::MouseOver(over_));
+            dispatch.Run(MouseEvent::MouseOver(over_));
         }
     }
 }
 
-void GadgetWorld::ShiftFocus(ScopedGadget gadget)
+void World::ShiftFocus(ScopedGadget gadget)
 {
     //指定gadget 不能接受焦点则父接受焦点
     ScopedGadget focus = gadget;
@@ -254,13 +250,13 @@ void GadgetWorld::ShiftFocus(ScopedGadget gadget)
         FocusManager::kReasonDirectFocusChange);
 }
 
-void GadgetWorld::HandleKeyEvent(GadgetKeyEvent & e)
+void World::HandleKeyEvent(KeyEvent & e)
 {
     if (focus_manager_.HandleKeyEvent(e))
         return;
 }
 
-ScopedGadget GadgetWorld::GetTargetByMouse()
+ScopedGadget World::GetTargetByMouse()
 {
     if (capture_)
         return capture_;
@@ -268,7 +264,7 @@ ScopedGadget GadgetWorld::GetTargetByMouse()
     return HitTest(mouse_pos_);
 }
 
-GadgetWorldClient & GadgetWorld::Client()
+WorldClient & World::Client()
 {
     static DummyWorldClient dc;
     if (client_ == nullptr)

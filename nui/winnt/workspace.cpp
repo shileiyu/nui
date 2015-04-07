@@ -3,6 +3,12 @@
 namespace nui
 {
 
+namespace winnt
+{
+
+
+
+
 Rect WorkSpace::GetPrimaryWorkArea()
 {
     HWND ref_wnd = 0;
@@ -33,6 +39,9 @@ Rect WorkSpace::GetPrimaryWorkArea()
         }
     }
     return work_area_rect;
+}
+
+
 }
 
 }

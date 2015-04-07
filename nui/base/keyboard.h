@@ -1,5 +1,5 @@
-#ifndef NUI_WIN_KEYBOARD_H_
-#define NUI_WIN_KEYBOARD_H_
+#ifndef NUI_BASE_KEYBOARD_H_
+#define NUI_BASE_KEYBOARD_H_
 
 #include <nui/nui.h>
 #include <nui/base/bitwise_enum.h>

@@ -4,7 +4,11 @@
 namespace nui
 {
 
-HMODULE Win32Utils::CurrentModule()
+namespace winnt
+{
+
+    
+HMODULE Utils::CurrentModule()
 {
     static const uint32_t kQueryByAddress =
         GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
@@ -18,7 +22,7 @@ HMODULE Win32Utils::CurrentModule()
     return instance;
 }
 
-void Win32Utils::Present(HDC hdc, Pixmap & pm)
+void Utils::Present(HDC hdc, Pixmap & pm)
 {
     PixStorage::Outline ol;
     Rect subset;
@@ -60,6 +64,8 @@ void Win32Utils::Present(HDC hdc, Pixmap & pm)
         DIB_RGB_COLORS);
 
     pm.Unlock();
+}
+
 }
 
 }

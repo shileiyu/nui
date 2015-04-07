@@ -28,9 +28,6 @@
 namespace nui
 {
 #ifdef NUI_WINDOWS
-typedef HICON IconHandle;
-typedef HCURSOR CursorHandle;
-typedef HWND WindowHandle;
 typedef HDC PaintContext;
 #endif
 }

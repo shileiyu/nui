@@ -12,7 +12,7 @@
 namespace nui
 {
 
-class GadgetWorldClient
+class WorldClient
 {
 public:
     virtual void PenddingRedraw(ScopedWorld world, const Rect & rect) = 0;
@@ -20,12 +20,12 @@ public:
     virtual void SetCursor(ScopedWorld world, CursorStyles cursor) = 0;
 };
 
-class GadgetWorld : public Gadget
+class World : public Gadget
 {
 public:
-    GadgetWorld(GadgetWorldClient * client);
+    World(WorldClient * client);
 
-    ~GadgetWorld();
+    ~World();
 
     void SetMousePos(const Point & pt);
 
@@ -39,7 +39,7 @@ public:
 
     void SetFocus(bool focus);
     //临时
-    void HandleKeyEvent(GadgetKeyEvent & e);
+    void HandleKeyEvent(KeyEvent & e);
 
     void Draw(Painter & painter, const Rect & inval_rect);
 
@@ -69,7 +69,7 @@ private:
 
     ScopedGadget GetTargetByMouse();
 
-    GadgetWorldClient & GadgetWorld::Client();
+    WorldClient & World::Client();
 private:
     FocusManager focus_manager_;
 
@@ -79,7 +79,7 @@ private:
     ScopedGadget over_;
     ScopedGadget capture_;
 
-    GadgetWorldClient * client_;
+    WorldClient * client_;
 };
 
 }

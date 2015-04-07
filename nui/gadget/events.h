@@ -3,7 +3,7 @@
 
 #include <nui/nui.h>
 #include <nui/base/mouse.h>
-#include <nui/sys/keyboard.h>
+#include <nui/base/keyboard.h>
 #include <nui/base/point.h>
 #include <nui/gadget/types.h>
 #include <nui/gadget/gadget.h>
@@ -11,7 +11,7 @@
 namespace nui
 {
 
-enum class GadgetEventType
+enum class EventType
 {
     kUndefined,
     kMouseMove,
@@ -33,26 +33,26 @@ enum class GadgetEventType
     kWheel,
 };
 
-enum GadgetEventPhase
+enum EventPhase
 {
     kCapturing,
     kAtTarget,
     kBubbling,
 };
 
-struct GadgetEventFeature
+struct EventFeature
 {
     uint32_t bubbles : 1;
     uint32_t cancelable : 1;
 };
 
-struct GadgetEventStatus
+struct EventStatus
 {
     uint32_t propagating : 1;
     uint32_t canceled : 1;
 };
 
-class GadgetEvent
+class Event
 {
     friend class EventDispatch;
 public:
@@ -66,67 +66,68 @@ public:
 
     bool Propagation() const;
 
-    GadgetEventType type() const;
+    EventType type() const;
 
-    GadgetEventPhase phase() const;
+    EventPhase phase() const;
 protected:
-    GadgetEvent();
+    Event();
 
 protected:
-    GadgetEventType type_;
-    GadgetEventPhase phase_;
-    GadgetEventFeature feature_;
-    GadgetEventStatus status_;
+    EventType type_;
+    EventPhase phase_;
+    EventFeature feature_;
+    EventStatus status_;
     ScopedGadget target_;
 };
 
-class GadgetMouseEvent : public GadgetEvent
+class MouseEvent : public Event
 {
+    friend class MouseEventHelper;
     friend class MouseEventDispatch;
 public:
-    static GadgetMouseEvent MouseMove(
+    static MouseEvent MouseMove(
         ScopedGadget target,
         MouseState state,
         const Point & pt
     );
 
-    static GadgetMouseEvent MouseDown(
-        ScopedGadget target,
-        MouseButton button,
-        MouseState state,
-        const Point & pt
-    );
-
-    static GadgetMouseEvent MouseUp(
+    static MouseEvent MouseDown(
         ScopedGadget target,
         MouseButton button,
         MouseState state,
         const Point & pt
     );
 
-    static GadgetMouseEvent MouseClick(
+    static MouseEvent MouseUp(
         ScopedGadget target,
         MouseButton button,
         MouseState state,
         const Point & pt
     );
 
-    static GadgetMouseEvent MouseDoubleClick(
+    static MouseEvent MouseClick(
+        ScopedGadget target,
+        MouseButton button,
+        MouseState state,
+        const Point & pt
+    );
+
+    static MouseEvent MouseDoubleClick(
         ScopedGadget target,
         MouseButton button,
         MouseState state,
         const Point & pt
     ); 
     
-    static GadgetMouseEvent MouseOver(
+    static MouseEvent MouseOver(
         ScopedGadget target
     );
 
-    static GadgetMouseEvent MouseOut(
+    static MouseEvent MouseOut(
         ScopedGadget target
     );   
 
-    static GadgetMouseEvent * FromEvent(GadgetEvent & e);
+    static MouseEvent * FromEvent(Event & e);
 
     int32_t x() const;
 
@@ -135,24 +136,25 @@ public:
     MouseButton button() const;
 
     MouseState state() const;
-
 protected:
-    GadgetMouseEvent();
+    MouseEvent();
 private:
     MouseButton button_;
     MouseState state_;
     int32_t x_;
     int32_t y_;
+    int32_t global_x_;
+    int32_t global_y_;
 };
 
-class GadgetKeyEvent : public GadgetEvent
+class KeyEvent : public Event
 {
 public:
-    static GadgetKeyEvent KeyUp(ScopedGadget target, KeyCode key);
+    static KeyEvent KeyUp(ScopedGadget target, KeyCode key);
 
-    static GadgetKeyEvent KeyDown(ScopedGadget target, KeyCode key);
+    static KeyEvent KeyDown(ScopedGadget target, KeyCode key);
 
-    static GadgetKeyEvent * FromEvent(GadgetEvent & e);
+    static KeyEvent * FromEvent(Event & e);
     
     KeyCode key_code() const;
 
@@ -165,38 +167,38 @@ private:
     KeyCode key_;
 };
 
-class GadgetFocusEvent : public GadgetEvent
+class FocusEvent : public Event
 {
 public:
-    static GadgetFocusEvent FocusOut(ScopedGadget target, bool tab);
+    static FocusEvent FocusOut(ScopedGadget target, bool tab);
 
-    static GadgetFocusEvent FocusIn(ScopedGadget target, bool tab);
+    static FocusEvent FocusIn(ScopedGadget target, bool tab);
 
-    static GadgetFocusEvent Blur(ScopedGadget target, bool tab);
+    static FocusEvent Blur(ScopedGadget target, bool tab);
 
-    static GadgetFocusEvent Focus(ScopedGadget target, bool tab);
+    static FocusEvent Focus(ScopedGadget target, bool tab);
 
-    static GadgetFocusEvent * FromEvent(GadgetEvent & e);
+    static FocusEvent * FromEvent(Event & e);
     
     bool IsTabTraversal() const;
 protected:
-    GadgetFocusEvent();
+    FocusEvent();
 private:
     bool tab_traversal_;
 };
 
-class GadgetWheelEvent : public GadgetEvent
+class WheelEvent : public Event
 {
 public:
-    static GadgetWheelEvent Make(ScopedGadget target, int dx, int dy);
+    static WheelEvent Make(ScopedGadget target, int dx, int dy);
 
-    static GadgetWheelEvent * FromEvent(GadgetEvent & e);
+    static WheelEvent * FromEvent(Event & e);
 public:
     int32_t dy() const;
 
     int32_t dx() const;
 protected:
-    GadgetWheelEvent();
+    WheelEvent();
 private:
     int32_t dx_;
     int32_t dy_;

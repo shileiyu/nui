@@ -1,6 +1,9 @@
-#include <nui/sys/window_events.h>
+#include <nui/winnt/window_events.h>
 
 namespace nui
+{
+
+namespace winnt
 {
 
 static int16_t HiWord(uint32_t value)
@@ -89,6 +92,8 @@ Point WindowHitTestEvent::Position() const
 void WindowHitTestEvent::SetResult(WindowPart part)
 {
     result = (LRESULT)part;
+}
+
 }
 
 }

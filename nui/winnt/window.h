@@ -7,11 +7,15 @@
 #include <nui/base/rect.h>
 #include <nui/base/point.h>
 #include <nui/base/mouse.h>
-#include <nui/sys/keyboard.h>
-#include <nui/sys/window_events.h>
+#include <nui/base/keyboard.h>
+#include <nui/winnt/window_events.h>
 
 namespace nui
 {
+
+namespace winnt
+{
+
 
 class NativeWindow;
 class Window;
@@ -25,7 +29,7 @@ class NativeWindow
 public:
     static bool DWMEnabled();
 
-    static NativeWindow Wrap(WindowHandle handle);
+    static NativeWindow Wrap(HWND handle);
 
     NativeWindow();
 
@@ -91,7 +95,7 @@ public:
 
     bool Send(WindowEvent & e);
 
-    WindowHandle NativeHandle() const;
+    HWND NativeHandle() const;
 
     bool ExtendFrameIntoClientArea(int left, int right, int top, int bottom);
 
@@ -99,7 +103,7 @@ public:
 
     bool ScreenToClient(Point & pt);
 protected:
-    WindowHandle handle_;
+    HWND handle_;
 };
 
 struct WindowArgs
@@ -255,5 +259,5 @@ public:
 
 
 }
-
+}
 #endif

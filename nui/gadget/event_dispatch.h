@@ -16,35 +16,33 @@ class GadgetWheelEvent;
 class EventDispatch
 {
 protected:
-    static void Run(EventDispatch & dispatch, GadgetEvent & e);
+    static void Run(EventDispatch & dispatch, Event & e);
 
-    virtual bool Pass(ScopedGadget target, GadgetEvent & e);
+    virtual bool Pass(ScopedGadget target, Event & e);
 };
 
 class KeyEventDispatch : public EventDispatch 
 {
 public:
-    static void Run(GadgetKeyEvent & e);    
+    static void Run(KeyEvent & e);    
 };
 
 class FocusEventDispatch :public EventDispatch 
 {
 public:
-    static void Run(GadgetFocusEvent & e);
+    static void Run(FocusEvent & e);
 };
 
 class MouseEventDispatch : public EventDispatch
 {
 public:
-    static void Run(GadgetMouseEvent & e);
-protected:
-    virtual bool Pass(ScopedGadget target, GadgetEvent & e);
+    static void Run(MouseEvent & e);
 };
 
 class WheelEventDispatch : public EventDispatch
 {
 public:
-    static void Run(GadgetWheelEvent & e);
+    static void Run(WheelEvent & e);
 };
 
 }

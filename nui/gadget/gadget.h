@@ -21,19 +21,19 @@ class Layout;
 class EventHandler
 {
 public:
-    virtual void OnEvent(ScopedGadget gadget, GadgetEvent & e) = 0;
+    virtual void OnEvent(ScopedGadget gadget, Event & e) = 0;
 };
 
 class GadgetListener
 {
 public:
-    virtual EventHandler * Query(ScopedGadget gadget, GadgetEvent & e) = 0;
+    virtual EventHandler * Query(ScopedGadget gadget, Event & e) = 0;
 };
 
 template <class T>
 class EventAdapter : public EventHandler
 {
-    typedef void(T::*TF)(ScopedGadget gadget, GadgetEvent & e);
+    typedef void(T::*TF)(ScopedGadget gadget, Event & e);
 public:
     void Register(T * obj, TF func)
     {
@@ -41,7 +41,7 @@ public:
         func_ = func;
     }
 
-    void OnEvent(ScopedGadget gadget, GadgetEvent & e)
+    void OnEvent(ScopedGadget gadget, Event & e)
     {
         if (obj_ && func_)
             (obj_->*func_)(gadget, e);
@@ -114,6 +114,8 @@ public:
 
     void GetGlobleBounds(Rect & rect) const;
 
+    Point MapToGlobal(const Point & pt) const;
+
     const Size & GetPreferredSize() const;
 
     void Invalidate();
@@ -152,7 +154,7 @@ public:
 
     void Blink();
 
-    virtual void Dispatch(GadgetEvent & e);
+    virtual void Dispatch(Event & e);
 
     bool IsFocusable() const;
 
@@ -162,7 +164,7 @@ public:
 
     bool HasFocus() const;
 
-    bool SkipDefaultKeyEventProcessing(const GadgetKeyEvent & key);
+    bool SkipDefaultKeyEventProcessing(const KeyEvent & key);
 
     virtual void Layout();
 

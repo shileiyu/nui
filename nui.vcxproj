@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="nui\base\keyboard.h" />
     <ClInclude Include="nui\base\mouse.h" />
     <ClInclude Include="nui\base\pixmap.h" />
     <ClInclude Include="nui\base\bitwise_enum.h" />
@@ -57,14 +58,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="nui\nui.h" />
-    <ClInclude Include="nui\sys\cursor.h" />
-    <ClInclude Include="nui\sys\icon.h" />
-    <ClInclude Include="nui\sys\keyboard.h" />
-    <ClInclude Include="nui\sys\utils.h" />
-    <ClInclude Include="nui\sys\window.h" />
-    <ClInclude Include="nui\sys\window_events.h" />
-    <ClInclude Include="nui\sys\window_types.h" />
-    <ClInclude Include="nui\sys\workspace.h" />
+    <ClInclude Include="nui\winnt\cursor.h" />
+    <ClInclude Include="nui\winnt\icon.h" />
+    <ClInclude Include="nui\winnt\utils.h" />
+    <ClInclude Include="nui\winnt\window.h" />
+    <ClInclude Include="nui\winnt\window_events.h" />
+    <ClInclude Include="nui\winnt\types.h" />
+    <ClInclude Include="nui\winnt\workspace.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nui\base\pixmap.cpp" />
@@ -105,12 +105,12 @@
     <ClCompile Include="nui\layout\sizer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="nui\sys\cursor.cpp" />
-    <ClCompile Include="nui\sys\icon.cpp" />
-    <ClCompile Include="nui\sys\utils.cpp" />
-    <ClCompile Include="nui\sys\window.cpp" />
-    <ClCompile Include="nui\sys\window_events.cpp" />
-    <ClCompile Include="nui\sys\workspace.cpp" />
+    <ClCompile Include="nui\winnt\cursor.cpp" />
+    <ClCompile Include="nui\winnt\icon.cpp" />
+    <ClCompile Include="nui\winnt\utils.cpp" />
+    <ClCompile Include="nui\winnt\window.cpp" />
+    <ClCompile Include="nui\winnt\window_events.cpp" />
+    <ClCompile Include="nui\winnt\workspace.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="skia.vcxproj">

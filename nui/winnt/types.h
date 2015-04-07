@@ -1,9 +1,12 @@
-#ifndef NUI_WIN_WINDOW_TYPES_H_
-#define NUI_WIN_WINDOW_TYPES_H_
+#ifndef NUI_WINNT_TYPES_H_
+#define NUI_WINNT_TYPES_H_
 
 #include <nui/nui.h>
 
 namespace nui
+{
+
+namespace winnt
 {
 
 typedef const wchar_t * ConstWidePtr;
@@ -28,6 +31,7 @@ enum class WindowPart
     kSouthEast = HTBOTTOMRIGHT,
 };
 
+}
 }
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef NUI_ICON_H_
-#define NUI_ICON_H_
+#ifndef NUI_WINNT_ICON_H_
+#define NUI_WINNT_ICON_H_
 
 #include <nui/nui.h>
 #include <nui/base/size.h>
@@ -7,7 +7,10 @@
 namespace nui
 {
 
+namespace winnt
+{
 
+    
 class Icon
 {
 public:
@@ -20,11 +23,13 @@ public:
 
     void Dispose();
 
-    IconHandle NativeHandle() const;
+    HICON NativeHandle() const;
 private:
-    IconHandle icon_;
+    HICON icon_;
 };
 
+
+}
 }
 
 #endif

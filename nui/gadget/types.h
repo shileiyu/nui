@@ -7,12 +7,12 @@
 namespace nui
 {
 
-class GadgetEvent;
-class GadgetMouseEvent;
-class GadgetKeyEvent;
-class GadgetFocusEvent;
-class GadgetWheelEvent;
-class GadgetWorld;
+class Event;
+class MouseEvent;
+class KeyEvent;
+class FocusEvent;
+class WheelEvent;
+class World;
 class Gadget;
 class Picture;
 class Label;
@@ -20,7 +20,7 @@ class ScrollView;
 class ScrollBar;
 
 typedef ScopedRef<Gadget> ScopedGadget;
-typedef ScopedRef<GadgetWorld> ScopedWorld;
+typedef ScopedRef<World> ScopedWorld;
 typedef ScopedRef<Picture> ScopedPicture;
 typedef ScopedRef<Label> ScopedLabel;
 typedef ScopedRef<ScrollView> ScopedScrollView;

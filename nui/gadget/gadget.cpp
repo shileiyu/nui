@@ -634,7 +634,7 @@ void Gadget::InitFocusSiblings(ScopedGadget & gadget, int index)
     }
 }
 
-void Gadget::Dispatch(GadgetEvent & e)
+void Gadget::Dispatch(Event & e)
 {
     if (!listerner_)
         return;
@@ -664,7 +664,7 @@ bool Gadget::HasFocus() const
     return focus_manager && (focus_manager->GetFocusedGadget() == this);
 }
 
-bool Gadget::SkipDefaultKeyEventProcessing(const GadgetKeyEvent & key)
+bool Gadget::SkipDefaultKeyEventProcessing(const KeyEvent & key)
 {
     return false;
 }

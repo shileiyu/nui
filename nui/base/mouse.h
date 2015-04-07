@@ -1,5 +1,5 @@
-﻿#ifndef NUI_MOUSE_H_
-#define NUI_MOUSE_H_
+﻿#ifndef NUI_BASE_MOUSE_H_
+#define NUI_BASE_MOUSE_H_
 
 #include <nui/nui.h>
 #include <nui/base/bitwise_enum.h>

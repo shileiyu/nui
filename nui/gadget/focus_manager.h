@@ -23,11 +23,11 @@ public:
         kReasonDirectFocusChange,
     };
 
-    FocusManager(GadgetWorld & root);
+    FocusManager(World & root);
 
     virtual ~FocusManager();
 
-    bool HandleKeyEvent(GadgetKeyEvent & key);
+    bool HandleKeyEvent(KeyEvent & key);
 
     void AdvanceFocusIfNecessary();
 
@@ -45,11 +45,11 @@ public:
 
     void RestoreFocusedGadget();
 private:
-    bool IsTabTraversalKeyEvent(GadgetKeyEvent & key);
+    bool IsTabTraversalKeyEvent(KeyEvent & key);
 
-    bool ProcessArrowKeyTraversal(GadgetKeyEvent & key);
+    bool ProcessArrowKeyTraversal(KeyEvent & key);
 
-    bool IsArrowKeyEvent(GadgetKeyEvent & key);
+    bool IsArrowKeyEvent(KeyEvent & key);
 
     void SetStoredFocusGadget(ScopedGadget gadget);
 
@@ -88,7 +88,7 @@ private:
                                              int skip_group_id);
 private:
     static bool arrow_key_traversal_enabled_;
-    GadgetWorld * root_;//focus_manager 对root 弱引用
+    World * root_;//focus_manager 对root 弱引用
     ScopedGadget focused_gadget_;
     FocusChangeReason focus_change_reason_;
     ScopedGadget stored_gadget_;

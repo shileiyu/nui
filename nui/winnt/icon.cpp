@@ -1,8 +1,12 @@
-#include <nui/sys/utils.h>
-#include <nui/sys/icon.h>
+#include <nui/winnt/utils.h>
+#include <nui/winnt/icon.h>
 
 namespace nui
 {
+
+namespace winnt
+{
+
 
 Icon::Icon()
     : icon_(0)
@@ -27,7 +31,7 @@ bool Icon::LoadFromResource(const Size & desired, const wchar_t * name)
 
 bool Icon::LoadFromResource(const Size & desired, int id)
 {
-    auto module = Win32Utils::CurrentModule();
+    auto module = Utils::CurrentModule();
     auto name = MAKEINTRESOURCE(id);
     int cx = desired.width();
     int cy = desired.height();
@@ -43,9 +47,11 @@ void Icon::Dispose()
     }
 }
 
-IconHandle Icon::NativeHandle() const
+HICON Icon::NativeHandle() const
 {
     return icon_;
+}
+
 }
 
 }

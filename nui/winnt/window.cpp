@@ -1,9 +1,13 @@
-﻿#include <nui/sys/icon.h>
-#include <nui/sys/utils.h>
-#include <nui/sys/window.h>
+﻿#include <nui/winnt/icon.h>
+#include <nui/winnt/utils.h>
+#include <nui/winnt/window.h>
 
 namespace nui
 {
+
+namespace winnt
+{
+
 
 struct WindowInstance
 {
@@ -100,7 +104,7 @@ bool NativeWindow::DWMEnabled()
     }
 }
 
-NativeWindow NativeWindow::Wrap(WindowHandle handle)
+NativeWindow NativeWindow::Wrap(HWND handle)
 {
     NativeWindow wrapper;
     if( ::IsWindow(handle) || 
@@ -310,8 +314,8 @@ bool NativeWindow::IsEnabled()
 NativeWindow NativeWindow::GetTopOwnedWindow()
 {
     assert(handle_);
-    WindowHandle popup = GetWindow(handle_, GW_ENABLEDPOPUP);
-    WindowHandle first = GetWindow(popup, GW_HWNDFIRST);
+    HWND popup = GetWindow(handle_, GW_ENABLEDPOPUP);
+    HWND first = GetWindow(popup, GW_HWNDFIRST);
     return NativeWindow::Wrap(first);
 }
 
@@ -616,7 +620,7 @@ public:
 
     static void HandleFocus(Window & w, WindowEvent & e, WindowClient & c)
     {
-        NativeWindow wrapper = NativeWindow::Wrap((WindowHandle)e.wparam);
+        NativeWindow wrapper = NativeWindow::Wrap((HWND)e.wparam);
 
         if (e.type == WM_SETFOCUS) {
             
@@ -640,7 +644,7 @@ public:
     static void HandleCursor(Window & w, WindowEvent & e, WindowClient & c)
     {
         if (LoWord(e.lparam) == HTCLIENT) {
-            WindowHandle handle = (WindowHandle)e.wparam;
+            HWND handle = (HWND)e.wparam;
             NativeWindow target = NativeWindow::Wrap(handle);
             c.QueryCursor(w, target);
             e.PreventDefault();
@@ -774,7 +778,7 @@ Window::~Window()
 
 bool Window::Initialize()
 {
-    auto module = Win32Utils::CurrentModule();
+    auto module = Utils::CurrentModule();
 
     WNDCLASSEX wndcls = { 0 };
     wndcls.cbSize = sizeof(wndcls);
@@ -801,14 +805,14 @@ bool Window::Initialize()
 
 void Window::UnInitialize()
 {
-    auto module = Win32Utils::CurrentModule();
+    auto module = Utils::CurrentModule();
     ::UnregisterClass(kDefaultClassName, module);
     return;
 }
 
 bool Window::Create(const WindowArgs & args)
 {
-    auto module = Win32Utils::CurrentModule();
+    auto module = Utils::CurrentModule();
     NativeWindow * parent_window = args.parent_window;
     uint32_t wsex = args.window_style_ex;
     uint32_t ws = args.window_style;
@@ -817,7 +821,7 @@ bool Window::Create(const WindowArgs & args)
     int cx = args.size.width();
     int cy = args.size.height();
 
-    WindowHandle parent_window_handle = 0;
+    HWND parent_window_handle = 0;
     if(parent_window)
         parent_window_handle = parent_window->NativeHandle();
 
@@ -832,6 +836,8 @@ bool Window::Create(const WindowArgs & args)
     );
 
     return handle_ != NULL;
+}
+
 }
 
 }

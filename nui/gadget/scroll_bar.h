@@ -56,19 +56,19 @@ public:
     //virtual void OnMouseExitedScrollView(const ui::MouseEvent& event);
     bool ScrollByContentsOffset(int contents_offset);
 
-    void Dispatch(GadgetEvent & e) override;
+    void Dispatch(Event & e) override;
 
     int GetContentOverlapSize() const;
 protected:
-    void OnMouseMove(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e);
+    void OnMouseMove(nui::ScopedGadget gadget, nui::MouseEvent & e);
 
-    void OnMouseDown(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e);
+    void OnMouseDown(nui::ScopedGadget gadget, nui::MouseEvent & e);
 
-    void OnMouseUp(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e);
+    void OnMouseUp(nui::ScopedGadget gadget, nui::MouseEvent & e);
 
-    void OnMouseOut(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e);
+    void OnMouseOut(nui::ScopedGadget gadget, nui::MouseEvent & e);
 
-    void OnWheel(nui::ScopedGadget gadget, nui::GadgetWheelEvent & e);
+    void OnWheel(nui::ScopedGadget gadget, nui::WheelEvent & e);
 
     void OnDraw(Painter & painter);
 private:

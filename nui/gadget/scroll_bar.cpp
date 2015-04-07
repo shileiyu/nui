@@ -128,26 +128,26 @@ int ScrollBar::GetPosition() const
     return contents_scroll_offset_;
 }
 
-void ScrollBar::Dispatch(GadgetEvent & e)
+void ScrollBar::Dispatch(Event & e)
 {
     Gadget::Dispatch(e);
     if (!e.Propagation())
         return;
-    GadgetMouseEvent * me = GadgetMouseEvent::FromEvent(e);
+    MouseEvent * me = MouseEvent::FromEvent(e);
     if (me)
     {//鼠标事件
         switch (me->type())
         {
-        case GadgetEventType::kMouseMove:
+        case EventType::kMouseMove:
             OnMouseMove(this, *me);
             break;
-        case GadgetEventType::kMouseDown:
+        case EventType::kMouseDown:
             OnMouseDown(this, *me);
             break;
-        case GadgetEventType::kMouseUp:
+        case EventType::kMouseUp:
             OnMouseUp(this, *me);
             break;
-        case GadgetEventType::kMouseOut:
+        case EventType::kMouseOut:
             OnMouseOut(this, *me);
             break;
         default:
@@ -156,7 +156,7 @@ void ScrollBar::Dispatch(GadgetEvent & e)
 
         return;
     }
-    GadgetWheelEvent * we = GadgetWheelEvent::FromEvent(e);
+    WheelEvent * we = WheelEvent::FromEvent(e);
     if (we)
     {
         OnWheel(this, *we);
@@ -164,7 +164,7 @@ void ScrollBar::Dispatch(GadgetEvent & e)
     }
 }
 
-void ScrollBar::OnWheel(nui::ScopedGadget gadget, nui::GadgetWheelEvent & e)
+void ScrollBar::OnWheel(nui::ScopedGadget gadget, nui::WheelEvent & e)
 {
     if (kVertal == style_)
         ScrollBarMoveVertical(-e.dy());
@@ -175,7 +175,7 @@ void ScrollBar::OnWheel(nui::ScopedGadget gadget, nui::GadgetWheelEvent & e)
     Invalidate();
 }
 
-void ScrollBar::OnMouseOut(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e)
+void ScrollBar::OnMouseOut(nui::ScopedGadget gadget, nui::MouseEvent & e)
 {
     last_mouse_.Set(-1, -1);
     if (left_click_state_ != kNone || hover_state_ != kNone)
@@ -186,11 +186,11 @@ void ScrollBar::OnMouseOut(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e)
     }
 }
 
-void ScrollBar::OnMouseMove(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e)
+void ScrollBar::OnMouseMove(nui::ScopedGadget gadget, nui::MouseEvent & e)
 {
-    if (e.type() != GadgetEventType::kMouseMove)
+    if (e.type() != EventType::kMouseMove)
         return;
-    GadgetMouseEvent * me = GadgetMouseEvent::FromEvent(e);
+    MouseEvent * me = MouseEvent::FromEvent(e);
     State last_hover_state = hover_state_;
     hover_state_ = GetStateByPos(Point(me->x(), me->y()));
     if (left_click_state_ == kSlider)
@@ -294,19 +294,19 @@ void ScrollBar::ScrollBarMoveVertical(int dy)
     UpdateVScrollBarArea();
 }
 
-void ScrollBar::OnMouseUp(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e)
+void ScrollBar::OnMouseUp(nui::ScopedGadget gadget, nui::MouseEvent & e)
 {
-    if (e.type() != GadgetEventType::kMouseUp)
+    if (e.type() != EventType::kMouseUp)
         return;
     left_click_state_ = kNone;
     Invalidate();
 }
 
-void ScrollBar::OnMouseDown(nui::ScopedGadget gadget, nui::GadgetMouseEvent & e)
+void ScrollBar::OnMouseDown(nui::ScopedGadget gadget, nui::MouseEvent & e)
 {
-    if (e.type() != GadgetEventType::kMouseDown)
+    if (e.type() != EventType::kMouseDown)
         return;
-    GadgetMouseEvent * me = GadgetMouseEvent::FromEvent(e);
+    MouseEvent * me = MouseEvent::FromEvent(e);
     if (MouseButton::kPrimary != me->button())
         return;
     left_click_state_ = GetStateByPos(Point(me->x(), me->y()));

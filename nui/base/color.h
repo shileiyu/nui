@@ -1,5 +1,5 @@
-﻿#ifndef NUI_COLOR_H_
-#define NUI_COLOR_H_
+﻿#ifndef NUI_BASE_COLOR_H_
+#define NUI_BASE_COLOR_H_
 
 #include <nui/nui.h>
 
