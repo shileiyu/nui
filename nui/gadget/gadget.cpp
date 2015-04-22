@@ -107,6 +107,26 @@ void Gadget::SetSize(const Size & size)
     }
 }
 
+void Gadget::SetLeft(int left)
+{
+    SetLoc(Point::Make(left, loc_.y()));
+}
+
+void Gadget::SetTop(int top)
+{
+    SetLoc(Point::Make(loc_.x(), top));
+}
+
+void Gadget::SetWidth(int width)
+{
+    SetSize(Size::Make(width, size_.height()));
+}
+
+void Gadget::SetHeight(int height)
+{
+    SetSize(Size::Make(size_.width(), height));
+}
+
 const Point & Gadget::GetLoc() const
 {
     return loc_;

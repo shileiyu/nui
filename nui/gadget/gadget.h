@@ -86,6 +86,14 @@ public:
 
     void SetSize(const Size & size);
 
+    void SetLeft(int left);
+
+    void SetTop(int top);
+
+    void SetWidth(int width);
+
+    void SetHeight(int height);
+
     const Point & GetLoc() const;
 
     const Size & GetSize() const;
