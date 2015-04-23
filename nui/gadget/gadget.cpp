@@ -210,6 +210,13 @@ void Gadget::GetGlobleBounds(Rect & rect) const
         rect.SetXYWH(0, 0, size_.width(), size_.height());
 }
 
+Point Gadget::MapToGlobal(const Point & pt) const
+{
+    Rect global;
+    GetGlobleBounds(global);
+    return Point::Make(pt.x() + global.left(), pt.y() + global.top());
+}
+
 void Gadget::SetPreferredSize(const Size & size)
 {
     if (size.width() != preferred_size_.width() || 
