@@ -193,7 +193,7 @@ void World::OnDraw(Painter & painter)
     GetLocalBounds(bounds);
 
     Paint paint;
-    paint.color = Color(0xff, 0xff, 0, 0);
+    paint.color = 0;
     paint.mode = Paint::kSrc;
     painter.DrawRect(bounds, paint);
 }

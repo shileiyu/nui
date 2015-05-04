@@ -81,7 +81,7 @@ struct Paint
 
     Paint()
     {
-        color = Color(0xff, 0, 0, 0);
+        color = ColorSetARGB(0xff, 0, 0, 0);
         style = kFill;
         stroke_width = 0;
         mode = kSrcOver;

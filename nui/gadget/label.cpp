@@ -14,7 +14,7 @@ Label::LineInfo::LineInfo()
 Label::Label()
     : cache_dirty_(false), text_size_(12), alignment_(kLeft),
     famliy_name_("Microsoft YaHei"), font_style_(nui::Font::kNormal),
-    left_(0), top_(0), color_(0xff, 0, 0, 0), spacing_(0), text_height_(0),
+    left_(0), top_(0), color_(0xff000000), spacing_(0), text_height_(0),
     bellipsis(false)
 {
     ;

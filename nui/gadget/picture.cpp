@@ -6,9 +6,9 @@ namespace nui
 
 Picture::Picture()
     :style_(kStyleCount), image_mode_(kNone),
-    solid_(0, 0, 0, 0)
+    solid_(0)
 {
-    stroke_ = { 0, { 0, 0, 0, 0 } };
+    stroke_ = { 0, 0 };
 }
 
 Picture::~Picture()
@@ -23,7 +23,7 @@ void Picture::SetStroke(const Stroke & stroke)
     Invalidate();
 }
 
-void Picture::SetBackground(const nui::Color & color)
+void Picture::Set(const nui::Color & color)
 {
     ResetBackground();
     style_ = kSolid;
@@ -31,7 +31,7 @@ void Picture::SetBackground(const nui::Color & color)
     Invalidate();
 }
 
-void Picture::SetBackground(const StrechImage & image)
+void Picture::Set(const StrechImage & image)
 {
     ResetBackground();
     style_ = kImage;
@@ -40,7 +40,7 @@ void Picture::SetBackground(const StrechImage & image)
     Invalidate();
 }
 
-void Picture::SetBackground(const StrechImageNine & image)
+void Picture::Set(const StrechImageNine & image)
 {
     ResetBackground();
     style_ = kImage;
@@ -50,7 +50,7 @@ void Picture::SetBackground(const StrechImageNine & image)
     Invalidate();
 }
 
-void Picture::SetBackground(const LinearGradient & gradient)
+void Picture::Set(const LinearGradient & gradient)
 {
     ResetBackground();
     style_ = kLinearGradient;
@@ -88,7 +88,7 @@ void Picture::OnDraw(Painter & painter)
 void Picture::DrawStroke(nui::Painter & painter)
 {
     using namespace nui;
-    if (stroke_.width > 0 && stroke_.color.alpha() != 0)
+    if (stroke_.width > 0 && ColorGetA(stroke_.color) != 0)
     {
         Rect rect;
 
@@ -115,7 +115,7 @@ void Picture::DrawSolid(nui::Painter & painter)
     Size size = GetSize();
     rect.SetXYWH(0, 0, size.width(), size.height());
 
-    if (solid_.alpha())
+    if (ColorGetA(solid_))
     {//背景单色 alpha 不为空
         Paint paint;
         paint.color = solid_;
@@ -201,7 +201,7 @@ void Picture::ResetBackground()
 {
     using namespace nui;
     style_ = kStyleCount;
-    solid_ = Color(0, 0, 0, 0);
+    solid_ = 0;
     image_mode_ = kNone;
 
     linear_.colors.clear();

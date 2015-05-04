@@ -4,6 +4,7 @@
 #include <nui/nui.h>
 #include "ref.h"
 #include "rect.h"
+#include "color.h"
 
 namespace nui
 {
@@ -37,8 +38,6 @@ private:
     size_t height_;
     size_t pitch_;
 };
-
-class Color;
 
 class Pixmap
 {

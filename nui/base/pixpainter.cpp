@@ -48,8 +48,8 @@ static SkIRect ToSkIRect(const nui::Rect & rect)
 
 static SkColor ToSkColor(const nui::Color & color)
 {
-    return SkColorSetARGB(color.alpha(), color.red(),
-        color.green(), color.blue());
+    return SkColorSetARGB(ColorGetA(color), ColorGetR(color),
+        ColorGetG(color), ColorGetB(color));
 }
 
 static SkPoint ToSkPoint(const Point & pt)

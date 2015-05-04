@@ -319,10 +319,10 @@ void ScrollBar::OnDraw(Painter & painter)
     GetLocalBounds(rect);
     
     Paint paint;
-    paint.color = Color(0x88, 0xff, 0, 0);
+    paint.color = ColorSetARGB(0x88, 0xff, 0, 0);
     painter.DrawRect(rect, paint);
 
-    paint.color = Color(0x33, 0, 0xff, 0);
+    paint.color = ColorSetARGB(0x33, 0, 0xff, 0);
     painter.DrawRect(slider_rect_, paint);
 }
 

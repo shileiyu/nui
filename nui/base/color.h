@@ -6,27 +6,21 @@
 namespace nui
 {
 
-class Color
-{
-public:
-    Color();
+typedef uint32_t Color;
 
-    Color(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
+typedef uint32_t PMColor;//预乘
 
-    void Set(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
+Color ColorSetARGB(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
 
-    uint8_t alpha() const;
+uint8_t ColorGetA(Color c);
 
-    uint8_t red() const;
+uint8_t ColorGetR(Color c);
 
-    uint8_t green() const;
+uint8_t ColorGetG(Color c);
 
-    uint8_t blue() const;
+uint8_t ColorGetB(Color c);
 
-    uint32_t Premul() const;
-private:
-    uint32_t color_;
-};
+PMColor ColorPremul(Color c);
 
 }
 #endif

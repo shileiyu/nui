@@ -30,7 +30,7 @@ class Picture : public Gadget
     {
         float begin[2];
         float end[2];
-        std::vector<nui::Color> colors;
+        std::vector<Color> colors;
         std::vector<float> positions;
     };
 
@@ -41,26 +41,26 @@ public:
         float begin[2];
         float end[2];
         size_t count;
-        nui::Color * color;
+        Color * color;
         float * pos;
     };
 
     struct StrechImage
     {
-        nui::Pixmap pixmap;
+        Pixmap pixmap;
         bool respect_ratio;//锁定比例拉伸
     };
 
     struct StrechImageNine
     {
-        nui::Pixmap pixmap;
-        nui::Rect center;
+        Pixmap pixmap;
+        Rect center;
     };
 
     struct Stroke
     {
         int width;
-        nui::Color color;
+        Color color;
     };
 
 public:
@@ -70,13 +70,13 @@ public:
 
     void SetStroke(const Stroke & stroke);
 
-    void SetBackground(const nui::Color & color);
+    void Set(const nui::Color & color);
 
-    void SetBackground(const StrechImage & image);
+    void Set(const StrechImage & image);
 
-    void SetBackground(const StrechImageNine & image);
+    void Set(const StrechImageNine & image);
 
-    void SetBackground(const LinearGradient & gradient);
+    void Set(const LinearGradient & gradient);
 protected:
     void OnDraw(Painter & painter) override;
 private:
@@ -97,8 +97,8 @@ protected:
     nui::Color solid_;
 
     ImageMode image_mode_;
-    nui::Rect image_center_;
-    nui::Pixmap bitmap_;
+    Rect image_center_;
+    Pixmap bitmap_;
 
     LinearGradientPri linear_;
 };

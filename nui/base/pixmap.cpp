@@ -194,7 +194,7 @@ void Pixmap::Erase(const Color & color)
     PixStorage::Outline ol;
 
     pixels_->Lock(ol);
-    uint32_t precolor = color.Premul();
+    uint32_t precolor = ColorPremul(color);
     auto width = subset_.width();
     auto height = subset_.height();
     auto pitch = ol.pitch;
